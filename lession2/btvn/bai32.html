@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+    <style>
+        .form {
+            border-style: outset;
+            padding: 20px;
+            width: 300px;
+            margin: 0 auto;
+        }
+        .form1 {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .gener {
+            accent-color: violet;
+            margin-right: 10px;
+        }
+        button {
+            margin-top: 10px;
+        }
+        .kc{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <form class="form">
+            <h1>HTML Form</h1>
+            <div class="kc">
+                <label for="" class="form1">First name:</label>
+                <input type="text">
+            </div>
+            <div class="kc">
+                <label for="" class="form1">Last name:</label>
+                <input type="text"> 
+            </div>
+            <div class="kc">
+                <label for="" class="form1">E-mail:</label>
+                <input type="email">
+            </div>
+            <div class="kc">
+                <input type="radio" class="gener" name="gender">
+                <label for="" class="form1">Male</label>
+                <br>
+                <input type="radio" class="gener" name="gender">
+                <label for="" class="form1">Female</label>
+            </div>
+            <button class="form1">Submit</button>
+            <button class="form1">Reset</button>
+        </form>
+    </div>
+
+</body>
+</html>

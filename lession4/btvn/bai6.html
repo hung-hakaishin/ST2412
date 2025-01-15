@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Đa Cấp</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header, footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .div1{
+            display: flex;
+            flex: 1;
+        }
+        .sidebar{
+            width: 25%;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .main{
+            width: 75%;
+            padding: 20px;
+            flex: 1;
+        }
+        h2{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <header>Header</header>
+    <div class="div1">
+        <div class="sidebar">
+            <h2>Sidebar</h2>
+            <p>Menu items...</p>
+        </div>
+        <div class="main">
+            <h2>Main Content</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+        </div>
+    </div>
+    <footer>Footer</footer>
+</body>
+</html>

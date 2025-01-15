@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: red;
+        }
+        @media all and (max-width: 512px) {
+            /* áp dụng với kích thước màn hình < 512px
+            all áp dụng cho tất cả màn hình, mặc định là all
+            screen hiển thị cho màn hình điện thoại, máy tính và máy tính bảng
+            print hiển thị */
+            body {
+                background: blue;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

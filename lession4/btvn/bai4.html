@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Thẻ Sổ</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        button{
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .div1{
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            border-radius: 5px;
+            background-color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        .div2{
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .div2 label {
+            width: 100px;
+            text-align: right;
+        }
+        .div2 input {
+            flex: 1;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="div1">
+        <div class="div2">
+            <label for="">Name:</label>
+            <input type="text">
+        </div>
+        <div class="div2">
+            <label for="">Email:</label>
+            <input type="email">
+        </div>
+        <div class="div2">
+            <label for="">Message:</label>
+            <input type="text">
+        </div>
+        <button>Submit</button>
+    </div>
+</body>
+</html>
