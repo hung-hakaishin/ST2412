@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 2</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .logo{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: black;
+            margin-right: 10px;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            background-color: aquamarine;
+            margin-bottom: 15px;
+        }
+        .menu-left{
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .menu-right{
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+        .menu-item{
+            margin-left: 15px;
+        }
+        .form{
+            display: flex;
+        }
+        .image{
+            flex: 1;
+            height: 100vh;
+        }
+        .lorem{
+            flex: 1;
+        }
+        .img-big {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            border: 2px solid black;
+            background-color: rgb(250, 247, 247);
+            width: 80%;
+            height: 50%;
+            margin: auto;
+            margin-bottom: 20px;
+        }
+        .img-small{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .small {
+            width: 120px;
+            height: 120px;
+            margin: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            border: 2px solid black;
+            background-color: rgb(247, 244, 240);
+        }
+        .color{
+            margin-bottom: 15px;
+        }
+        .btncart{
+            width: 80px;
+            height: 40px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .btncart:hover{
+            background-color: blue;
+        }
+        .button{
+            border-radius: 5px;
+            width: 60px;
+            margin-right: 10px;
+            height: 35px;
+        }
+        .button:hover{
+            background-color: blue;
+        }
+        .buttonadd{
+            border-radius: 5px;
+            width: 100px;
+            height: 40px;
+        }
+        .buttonadd:hover{
+            background-color: blue;
+        }
+        .soluong{
+            border-radius: 5px;
+            width: 50px;
+            margin-right: 20px;
+            height: 35px;
+        }
+        .ip{
+            margin-bottom: 10px;
+        }
+        .comments{
+            margin-bottom: 10px;
+            border: 2px solid black;
+        }
+        .danhgia{
+            display: flex;
+            justify-content: space-between;
+            margin: 10px;
+        }
+        .logo-small{
+            background-color: black;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            text-align: center;
+            justify-content: center;
+        }
+        .avt{
+            display: flex;
+            align-items: center;
+        }
+        .cont{
+            margin: 10px;
+        }
+        .page{
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .page:hover{
+            background-color: brown;
+        }
+        .footer{
+            background-color: aquamarine;
+        }
+        .tel{
+            display: flex;
+        }
+        .kc{
+            margin-left: 30px;
+        }
+
+
+
+        @media (max-width: 768px) {
+            
+            .header{
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .menu-right {
+                justify-content: flex-start;
+            }
+            .form {
+                flex-direction: column;
+            }
+            .image, .lorem {
+                width: 100%;
+                flex: none;
+            }
+            .img-big {
+                height: 150px;
+            }
+            .small {
+                width: 80px;
+                height: 80px;
+                margin: 5px;
+            }
+            .footer {
+                font-size: 14px;
+                
+            }
+        }
+
+        @media (max-width: 480px) {
+            .menu-item {
+                margin-left: 0;
+                margin-right: 10px;
+            }
+            .button {
+                width: 50px;
+                height: 30px;
+                font-size: 12px;
+            }
+            .buttonadd {
+                width: 80px;
+                height: 35px;
+                font-size: 12px;
+            }
+            .soluong {
+                width: 40px;
+                height: 30px;
+                font-size: 12px;
+            }
+            .page {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-left">
+            <div class="logo"></div>
+            <h2>My Shop</h2>
+        </div>
+        <div class="menu-right">
+            <div class="menu-item">Home</div>
+            <div class="menu-item">About us</div>
+            <div class="menu-item">Contact</div>
+            <button class="btncart">My Cart(0)</button>
+        </div>
+    </div>
+
+    <div class="form">
+        <div class="image">
+            <div class="img-big">IMAGE</div>
+            <div class="img-small">
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+                <div class="small">IMAGE</div>
+            </div>
+        </div>
+
+        <div class="lorem">
+            <h1>Lorem ipsum dolor</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <br>
+
+            <div class="color">
+                <h3 class="ip">Color</h3>
+                <button class="button">Blue</button>
+                <button class="button">Red</button>
+                <button class="button">Green</button>
+            </div>
+            <div class="design">
+                <h3 class="ip">Design</h3>
+                <button class="button">Classic</button>
+                <button class="button">Mordem</button>
+            </div>
+            <div>
+                <h3>Price: <Span style="color: blue;">$129.01</Span></h3>
+            </div>
+            <div>
+                <h3>Discount: <span style="color: red;">10%</span></h3>
+            </div>
+            <div>
+                <h3>Rating: </h3>
+            </div>
+            <div>
+                <h3>In Stocks: <span style="color: blue;">1004</span></h3>
+            </div>
+            <div>
+                <input type="number" min="0" value="0" class="soluong">
+                <button class="buttonadd">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <h2>Comments</h2>
+        <div class="comments">
+            <div class="danhgia">
+                <div class="avt">
+                    <div class="logo-small"></div>
+                    <div>
+                        <p><strong>Customer 1</strong></p>
+                        <p><em>Ha Noi</em></p>
+                    </div>
+                </div>
+                <div class="comment-rating">⭐⭐⭐⭐</div>
+            </div>
+            <div class="cont">
+                <p>2022-10-10 19:40:01</p>
+                <p>sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+            </div>
+        </div>
+
+        <div class="comments">
+            <div class="danhgia">
+                <div class="avt">
+                    <div class="logo-small"></div>
+                    <div>
+                        <p><strong>Customer 1</strong></p>
+                        <p><em>Ha Noi</em></p>
+                    </div>
+                </div>
+                <div class="comment-rating">⭐⭐⭐⭐</div>
+            </div>
+            <div class="cont">
+                <p>2022-10-10 19:40:01</p>
+                <p>sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
+            </div>
+        </div>
+        <button class="page">1</button>
+        <button class="page">2</button>
+        <button class="page">3</button>
+    </div>
+
+    <footer class="footer">
+        <div class="kc">
+            <p>My Shop</p>
+        </div>
+        <div class="tel kc">
+            <p>22C Somewhere, Ha Noi</p>
+            <p style="margin-left: 30px;">📞 09876543210</p>
+        </div>
+    </footer>
+</body>
+</html>

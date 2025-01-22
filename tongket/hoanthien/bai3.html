@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai 3</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header{
+            display: flex;
+            justify-content: space-between;
+            background-color: aquamarine;
+            margin-bottom: 15px;
+            border: 1px solid black;
+        }
+        .menu-left{
+            display: flex;
+            justify-items: center;
+            align-items: center;
+            margin-left: 20px;
+        }
+        .logo{
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: black;
+            margin-right: 10px;
+        }
+
+        .menu-right{
+            display: flex;
+            align-items: center;
+        }
+        .menu-item{
+            margin-right: 30px;
+        }
+
+        .form{
+            display: flex;
+        }
+        .form-left{
+            flex: 1;
+            align-items: center;
+            justify-items: center;
+        }
+        .img{
+            background: linear-gradient(to bottom, rgba(222, 82, 159, 0), rgba(222, 82, 159, 1));
+            border: 2px solid black;
+            width: 90%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .btn-share, .btn-down{
+            width: 150px;
+            height: 40px;
+        }
+        .btn-share{
+            background: rgba(222, 82, 159);
+        }
+        .btn-down{
+            margin-left: 20px;
+            margin-right: 20px;
+            background-color: yellowgreen;
+        }
+        .btn-views{
+            width: 320px;
+            height: 40px;
+            background-color: rgb(168, 168, 237);
+        }
+        .btn-down, .btn-share, .btn-views{
+            border-radius: 5px;
+        }
+        .btn-down:hover, .btn-share:hover, .btn-views:hover{
+            background-color: blue;
+        }
+
+        .form-right{
+            flex: 1;
+        }
+        .btn-right{
+            width:130px;
+            height: 40px;
+            margin-right: 10px;
+            border-radius: 3px;
+        }
+
+        .content{
+            border: 2px solid black;
+        }
+        .form-under{
+            margin: 0 40px;
+        }
+        .dienvien{
+            display: flex;
+        }
+        .dv{
+            margin: 0 20px;
+            text-align: center;
+        }
+        img{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+        }
+
+
+    @media (max-width: 480px) {
+        .header {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-left {
+            margin: 10px 0;
+        }
+
+        .menu-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item {
+            margin-bottom: 10px;
+        }
+
+        .form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-left, .form-right {
+            width: 100%;
+            text-align: center;
+        }
+
+        .img {
+            height: 250px;
+        }
+
+        .btn-share, .btn-down, .btn-views {
+            width: 120px;
+            height: 35px;
+            margin-bottom: 10px;
+        }
+
+        .btn-right {
+            width: 100px;
+            height: 35px;
+        }
+
+        .dienvien {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dv {
+            margin-bottom: 10px;
+        }
+
+        .form-under {
+            margin: 10px;
+        }
+    }
+
+
+    @media (max-width: 768px) {
+        .header {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-left {
+            margin: 10px 0;
+        }
+
+        .menu-right {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .menu-item {
+            margin-bottom: 10px;
+        }
+
+        .form {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-left, .form-right {
+            width: 90%;
+            text-align: center;
+        }
+
+        .img {
+            height: 270px;
+        }
+
+        .btn-share, .btn-down, .btn-views {
+            width: 140px;
+            height: 40px;
+            margin-bottom: 15px;
+        }
+
+        .btn-right {
+            width: 110px;
+            height: 40px;
+        }
+
+        .dienvien {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dv {
+            margin-bottom: 15px;
+        }
+
+        .form-under {
+            margin: 20px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="menu-left">
+            <div class="logo"></div>
+            <h2>Hello Film</h2>
+        </div>
+        <div class="menu-right">
+            <div class="menu-item">Home</div>
+            <div class="menu-item">Top film</div>
+            <div class="menu-item">Categories</div>
+        </div>
+    </div>
+
+    <div class="form">
+        <div class="form-left">
+            <div class="img">IMAGE</div>
+            <div>
+                <button class="btn-share">Chia se</button>
+                <button class="btn-down">Tai xuong</button>
+                <button class="btn-views">Xem phim</button>
+            </div>
+        </div>
+
+        <div class="form-right">
+            <h1>Unknown Battle</h1>
+            <div>
+                <p>Tran Chien Rzhew (2019)</p>
+                <p>2 gio 17 phut</p>
+                <p>⭐⭐⭐⭐</p>
+                <button class="btn-right">Chien tranh</button>
+                <button class="btn-right">Chinh kich</button>
+            </div>
+            <br>
+            <div>
+                <h3>Dao Dien: <span>Igor kopylov</span></h3>
+                <h3>Quoc Gia: <span>Nga</span></h3>
+                <h3>Khoi Chieu: <span>12/05/2019</span></h3>
+            </div>
+        </div>
+    </div>
+
+     <div class="form-under">
+        <h3>Mo ta</h3>
+        <div class="content">
+            <p style="margin-left: 5px; margin-right: 5px;">
+                Bo phim hanh dong chien tranh voi nhieu canh chien dau man nhan, lot ta het su khoc liet va tan nhan cua chien tranh voi nhung con ngudi, nhung so phan
+                nho be bi xoay vao cuoc chien. Do la anh chang Kostya gan da nhung cung het suc lem linh, la anh Dai doi truong lau dau dau ve mang song cua nhung ngudi
+                dong chi duoi quyen chi huy cua minh, la anh si quan NKVD buong binh va co phan bao thu de roi ban than phai hung chiu so phan nghiet nga ... Nhung vuot
+                len tat ca, do la tinh than chien dau ngoan cuong va dung manh cua nhung ngudi linh Hong quan trong cuoc chien tranh Ve quoc bao ve dat me Xo viet. Tran
+                chien Rzhev- cau chuyen cua dai doi Hong quan Xo viet tai ngoi lang Ovsyannikovo nho be da chon vui het gan nhu toan bo quan so cua minh nhung van
+                chien dau toi hoi tho cuoi cung de chong lai got giay phat xit cua Duc quoc xa.
+            </p>
+        </div>
+     </div>
+
+     <div class="form-under">
+        <h3>Dien Vien</h3>
+        <div class="dienvien">
+            <div class="dv">
+                <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/Image%20FP_2024/hinh-anime-2.jpg" alt="">
+                <p>Sergey Zharkov</p>
+            </div>
+            <div class="dv">
+                <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/Image%20FP_2024/hinh-anime-2.jpg" alt="">
+                <p>Ivan Batarev</p>
+            </div>
+            <div class="dv">
+                <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/Image%20FP_2024/hinh-anime-2.jpg" alt="">
+                <p>Oleg Gayanov</p>
+            </div>
+            <div class="dv">
+                <img src="https://cdn11.dienmaycholon.vn/filewebdmclnew/public/userupload/files/Image%20FP_2024/hinh-anime-2.jpg" alt="">
+                <p>Arseny Semenov</p>
+            </div>
+        </div>
+     </div>
+</body>
+</html>
