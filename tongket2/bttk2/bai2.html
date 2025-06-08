@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loại bỏ các phần tử trùng</title>
+</head>
+<body>
+
+    <h2>Nhập mảng A1 và A2</h2>
+    <label for="array1">Mảng A1 (cách nhau bởi dấu phẩy):</label>
+    <input type="text" id="array1" placeholder="1,2,a">
+    
+    <br>
+
+    <label for="array2">Mảng A2 (cách nhau bởi dấu phẩy):</label>
+    <input type="text" id="array2" placeholder="1,3,b">
+    
+    <br>
+
+    <button onclick="findUnique()">Tìm phần tử không trùng</button>
+
+    <h3>Kết quả:</h3>
+    <p id="result"></p>
+
+    <script>
+        function findUnique() {
+            let A1 = document.getElementById("array1").value.split(",").map(item => isNaN(item) ? item.trim() : Number(item.trim()));
+            let A2 = document.getElementById("array2").value.split(",").map(item => isNaN(item) ? item.trim() : Number(item.trim()));
+
+            let uniqueArr = [...new Set([...A1, ...A2].filter(x => !(A1.includes(x) && A2.includes(x))))];
+
+            document.getElementById("result").textContent = "Mảng kết quả: " + JSON.stringify(uniqueArr);
+        }
+    </script>
+
+</body>
+</html>

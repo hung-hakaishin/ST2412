@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Nhập</title>
+</head>
+<body>
+    <h1>Đăng Nhập</h1>
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Mật Khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+    
+    <p id="login-alert"></p>
+
+    <script src="./users.js"></script>
+    <script src="./posts.js"></script>
+
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const loginAlert = document.getElementById("login-alert");
+
+            if (email === "" || password === "") {
+                loginAlert.textContent = "Vui lòng nhập đầy đủ thông tin.";
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                loginAlert.textContent = `Xin chào: ${user.first_name} ${user.last_name}` ;
+            } else {
+                loginAlert.textContent = "Đăng nhập thất bại. Vui lòng kiểm tra lại thông tin.";
+            }
+        }
+
+        function displayUsers() {
+            const userList = document.getElementById("user-list");
+            userList.innerHTML = "";
+
+            users.forEach(user => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${user.name} - ${user.email}`;
+                userList.appendChild(listItem);
+            });
+        }
+
+        function displayPosts() {
+            const postList = document.getElementById("post-list");
+            postList.innerHTML = "";
+
+            posts.forEach(post => {
+                const listItem = document.createElement("li");
+                listItem.textContent = `${post.title} - ${post.content}`;
+                postList.appendChild(listItem);
+            });
+        }
+        displayPosts();
+        displayUsers();
+    </script>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Tabs</title>
+  <link rel="stylesheet" href="bai1.css">
+</head>
+<body>
+  <h1>#todo</h1>
+  <div class="tabs">
+    <button class="tab active" onclick="filterTasks('all', this)">All</button>
+    <button class="tab" onclick="filterTasks('active', this)">Active</button>
+    <button class="tab" onclick="filterTasks('completed', this)">Completed</button>
+  </div>
+
+  <div id="task-input">
+    <input id="new-task" type="text" placeholder="add details" />
+    <button id="add-task">Add</button>
+  </div>
+
+  <div id="all" class="tab-content active">
+    <ul id="all-tasks"></ul>
+  </div>
+
+  <div id="active" class="tab-content">
+    <ul id="active-tasks"></ul>
+  </div>
+
+  <div id="completed" class="tab-content">
+    <ul id="completed-tasks"></ul>
+    <button id="delete-all" onclick="deleteAllCompleted()">Delete All</button>
+  </div>
+
+  <script>
+    // khai báo biến toàn cục taskstasks
+    let tasks = [];
+
+    // tải danh sách lên localStorage
+    function loadTasks() {
+      const stored = localStorage.getItem("tasks");
+      if (stored) {
+        tasks = JSON.parse(stored);
+      }
+    }
+
+    // lưu tasks vào localStorage và đổi mảng tasks thành JSON
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // tạo id từng tasks
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // tạo li
+    function createTaskElement(task, showDelete = false) {
+      const li = document.createElement("li");
+      li.className = task.completed ? "completed" : "";
+
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = task.completed;
+      checkbox.addEventListener("change", () => toggleTask(task.id));
+
+      const span = document.createElement("span");
+      span.textContent = task.text;
+
+      li.appendChild(checkbox);
+      li.appendChild(span);
+
+      // Delete trong Completed
+      if (showDelete) {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "delete-btn";
+        deleteBtn.addEventListener("click", () => deleteTask(task.id));
+        li.appendChild(deleteBtn);
+      }
+
+      return li;
+    }
+
+
+    // thêm tasks
+    function addTask() {
+      const input = document.getElementById("new-task");
+      const text = input.value.trim();
+      if (text !== "") {
+        const task = { id: generateId(), text, completed: false };
+        tasks.push(task);
+        input.value = "";
+        saveTasks();
+        renderTasks();
+      }
+    }
+
+    // thay đổi trạng thái
+    function toggleTask(id) {
+      tasks = tasks.map(task => {
+        if (task.id === id) {
+          task.completed = !task.completed;
+        }
+        return task;
+      });
+      saveTasks();
+      renderTasks();
+    }
+
+    // xóa tasks
+    function deleteTask(id) {
+      tasks = tasks.filter(task => task.id !== id);
+      saveTasks();
+      renderTasks();
+    }
+
+    // xóa tất cả tasks
+    function deleteAllCompleted() {
+      tasks = tasks.filter(task => !task.completed);
+      saveTasks();
+      renderTasks();
+    }
+
+    // hiển thị tasks
+    function renderTasks() {
+      const allContainer = document.getElementById("all-tasks");
+      const activeContainer = document.getElementById("active-tasks");
+      const completedContainer = document.getElementById("completed-tasks");
+      allContainer.innerHTML = "";
+      activeContainer.innerHTML = "";
+      completedContainer.innerHTML = "";
+
+      tasks.forEach(task => {
+        allContainer.appendChild(createTaskElement(task));
+        if (!task.completed) {
+          activeContainer.appendChild(createTaskElement(task));
+        } else {
+          completedContainer.appendChild(createTaskElement(task, true));
+        }
+      });
+    }
+
+    // chia theo danh mục
+    function filterTasks(category, button) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(category).classList.add('active');
+
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      button.classList.add('active');
+    }
+
+    // sự kiện
+    document.getElementById("add-task").addEventListener("click", addTask);
+    document.getElementById("new-task").addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        addTask();
+      }
+    });
+
+    loadTasks();
+    renderTasks();
+  </script>
+</body>
+</html>

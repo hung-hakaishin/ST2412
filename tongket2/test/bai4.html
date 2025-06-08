@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users & Posts</title>
+</head>
+<body>
+    <h1>Đăng nhập</h1>
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Mật khẩu">
+    <button onclick="login()">Đăng nhập</button>
+    <p>Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a></p>
+
+    
+    <p id="login-message"></p>
+
+    <script src="users.js"></script>
+    <script src="posts.js"></script>
+    <script>
+        function login() {
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const message = document.getElementById("login-message");
+
+            if (!email || !password) {
+                message.textContent = "Hãy nhập đầy đủ thông tin";
+                return;
+            }
+
+            let users = JSON.parse(localStorage.getItem("users")) || [];
+
+            const user = users.find(user => user.email === email && user.password === password);
+
+            if (user) {
+                message.textContent = `Xin chào: ${user.first_name} ${user.last_name}`;
+                localStorage.setItem("currentUser", JSON.stringify(user)); 
+            } else {
+                message.textContent = "Thông tin tài khoản không chính xác";
+            }
+        }
+
+
+        function displayUsers() {
+            const userList = document.getElementById("user-list");
+            users.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = `${user.first_name} ${user.last_name} - ${user.email}`;
+                userList.appendChild(li);
+            });
+        }
+
+        function displayPosts() {
+            const postList = document.getElementById("post-list");
+            posts.forEach(post => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>${post.title}</strong> - ${post.content} (User ID: ${post.user_id})`;
+                postList.appendChild(li);
+            });
+        }
+
+        displayUsers();
+        displayPosts();
+    </script>
+</body>
+</html>

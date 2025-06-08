@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Xếp Hạng Đội Bóng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            width: 50%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Bảng Xếp Hạng Đội Bóng</h2>
+    
+    <label for="teamsInput">Nhập danh sách đội bóng (Tên, Điểm, GD - cách nhau bởi dấu `;`):</label>
+    <br>
+    <textarea id="teamsInput" rows="5" cols="50" placeholder="Team A,10,5; Team B,12,8"></textarea>
+    <br><br>
+    
+    <button onclick="rankTeams()">Xếp Hạng</button>
+
+    <h3>Kết Quả:</h3>
+    <table id="rankingTable">
+        <thead>
+            <tr>
+                <th>Hạng</th>
+                <th>Tên Đội</th>
+                <th>Điểm</th>
+                <th>GD</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+
+    <script>
+        function rankTeams() {
+            let input = document.getElementById("teamsInput").value;
+            let teams = input.split(";").map(team => {
+                let [name, points, GD] = team.split(",").map(item => item.trim());
+                return { name, points: parseInt(points), GD: parseInt(GD) };
+            });
+
+            // Sắp xếp
+            teams.sort((a, b) => {
+                if (b.points !== a.points) return b.points - a.points;
+                if (b.GD !== a.GD) return b.GD - a.GD;
+                return a.name.localeCompare(b.name);
+            });
+
+            // Hiển thị kết quả
+            let tableBody = document.querySelector("#rankingTable tbody");
+            tableBody.innerHTML = "";
+            teams.forEach((team, index) => {
+                let row = 
+                `<tr>
+                    <td>${index + 1}</td>
+                    <td>${team.name}</td>
+                    <td>${team.points}</td>
+                    <td>${team.GD}</td>
+                </tr>`;
+                tableBody.innerHTML += row;
+            });
+        }
+    </script>
+
+</body>
+</html>

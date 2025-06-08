@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Todo Tabs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .tabs button {
+      background: none;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+      padding: 5px 10px;
+    }
+    .tabs button.active {
+      border-bottom: 2px solid blue;
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ccc;
+      padding: 5px 0;
+    }
+    li.completed span {
+      text-decoration: line-through;
+      color: #888;
+    }
+    li input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    li button {
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>#todo</h1>
+  <div class="tabs">
+    <button class="tab active" onclick="filterTasks('all', this)">All</button>
+    <button class="tab" onclick="filterTasks('active', this)">Active</button>
+    <button class="tab" onclick="filterTasks('completed', this)">Completed</button>
+  </div>
+
+  <!-- All Tab: chỉ có input và nút Add, hiển thị danh sách task bên dưới -->
+  <div id="all" class="tab-content active">
+    <input id="new-task" type="text" placeholder="add details" />
+    <button id="add-task">Add</button>
+    <ul id="all-tasks"></ul>
+  </div>
+
+  <!-- Active Tab -->
+  <div id="active" class="tab-content">
+    <ul id="active-tasks"></ul>
+  </div>
+
+  <!-- Completed Tab -->
+  <div id="completed" class="tab-content">
+    <ul id="completed-tasks"></ul>
+  </div>
+
+  <script>
+    // Mảng lưu trữ các task (mỗi task là 1 đối tượng: { id, text, completed })
+    let tasks = [];
+
+    // Khởi tạo từ localStorage nếu có
+    function loadTasks() {
+      const stored = localStorage.getItem("tasks");
+      if (stored) {
+        tasks = JSON.parse(stored);
+      }
+    }
+
+    // Lưu tasks vào localStorage
+    function saveTasks() {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    }
+
+    // Tạo một ID ngẫu nhiên cho task
+    function generateId() {
+      return '_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Hàm tạo phần tử li cho task
+    // includeDelete: nếu true thì thêm nút Delete và gắn sự kiện xoá
+    function createTaskElement(task, includeDelete) {
+      const li = document.createElement("li");
+      li.className = task.completed ? "completed" : "";
+
+      // Tạo checkbox (hiển thị bên trái)
+      const checkbox = document.createElement("input");
+      checkbox.type = "checkbox";
+      checkbox.checked = task.completed;
+      checkbox.addEventListener("change", () => toggleTask(task.id));
+
+      // Tạo span chứa nội dung task
+      const span = document.createElement("span");
+      span.textContent = task.text;
+
+      // Thêm checkbox và span vào li
+      li.appendChild(checkbox);
+      li.appendChild(span);
+
+      // Nếu includeDelete là true thì thêm nút Delete
+      if (includeDelete) {
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.addEventListener("click", () => deleteTask(task.id));
+        li.appendChild(deleteBtn);
+      }
+      return li;
+    }
+
+    // Thêm task mới
+    function addTask() {
+      const input = document.getElementById("new-task");
+      const text = input.value.trim();
+      if (text !== "") {
+        const task = { id: generateId(), text, completed: false };
+        tasks.push(task);
+        input.value = "";
+        saveTasks();
+        renderTasks();
+      }
+    }
+
+    // Xoá một task theo id
+    function deleteTask(id) {
+      tasks = tasks.filter(task => task.id !== id);
+      saveTasks();
+      renderTasks();
+    }
+
+    // Đánh dấu hoàn thành hoặc chưa hoàn thành
+    function toggleTask(id) {
+      tasks = tasks.map(task => {
+        if (task.id === id) {
+          task.completed = !task.completed;
+        }
+        return task;
+      });
+      saveTasks();
+      renderTasks();
+    }
+
+    // Hàm render hiển thị task lên các tab
+    function renderTasks() {
+      const allContainer = document.getElementById("all-tasks");
+      const activeContainer = document.getElementById("active-tasks");
+      const completedContainer = document.getElementById("completed-tasks");
+
+      // Xoá nội dung cũ
+      allContainer.innerHTML = "";
+      activeContainer.innerHTML = "";
+      completedContainer.innerHTML = "";
+
+      tasks.forEach(task => {
+        // Tab All: tạo li mà KHÔNG có nút Delete
+        allContainer.appendChild(createTaskElement(task, false));
+
+        // Tab Active và Completed: tạo li có nút Delete
+        if (!task.completed) {
+          activeContainer.appendChild(createTaskElement(task, true));
+        } else {
+          completedContainer.appendChild(createTaskElement(task, true));
+        }
+      });
+    }
+
+    // Xử lý chuyển đổi tab (All, Active, Completed)
+    function filterTasks(category, button) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(category).classList.add('active');
+
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      button.classList.add('active');
+    }
+
+    // Gán sự kiện cho nút Add và phím Enter
+    document.getElementById("add-task").addEventListener("click", addTask);
+    document.getElementById("new-task").addEventListener("keyup", (e) => {
+      if (e.key === "Enter") {
+        addTask();
+      }
+    });
+
+    // Khởi chạy ban đầu
+    loadTasks();
+    renderTasks();
+  </script>
+</body>
+</html>
