@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="">Ho va ten</label>
+        <input type="text" name="" id="hoten">
+        <br>
+
+        <label for="">gioi tinh</label>
+        <select name="" id="gioitinh">
+            <option value="nam">Nam</option>
+            <option value="nu">Nu</option>
+            <option value="khac">Khac</option>
+        </select>
+        <br>
+
+        <label for="">tuoi</label>
+        <input type="number" name="" id="tuoi">
+        <br>    
+
+        <label for="">dia chi</label>
+        <input type="text" name="" id="diachi">
+        <br>
+
+        <label for="">email</label>
+        <input type="email" name="" id="email">
+        <br>    
+
+        <label for="">mat khau</label>
+        <input type="password" name="" id="matkhau" >
+        <br>
+
+        <button id="btn" onclick="dangky()">Dang ky</button>
+
+    </div>
+
+    <script>
+        function dangky() {
+            let hoten = document.getElementById("hoten").value;
+            let gioitinh = document.getElementById("gioitinh").value;
+            let tuoi = document.getElementById("tuoi").value;
+            let diachi = document.getElementById("diachi").value;
+            let email = document.getElementById("email").value;
+            let matkhau = document.getElementById("matkhau").value;
+
+
+            if (hoten === "" ) {
+                alert("Vui long nhap ho va ten");
+                return;
+            }
+            if (tuoi === "" ) {
+                alert("Vui long nhap tuoi");
+                return;
+            }
+            if (diachi === "" ) {
+                alert("Vui long nhap dia chi");
+                return;
+            }
+            if (!valEmail(email)) {
+                alert("Vui long nhap email");
+                return;
+            }
+            if (matkhau === "" ) {
+                alert("Vui long nhap mat khau");
+                return;
+            }
+
+            let thongtin = `dang ky thanh cong!\n
+            Họ và tên: ${hoten}\n
+            Giới tính: ${gioitinh}\n
+            Tuổi: ${tuoi}\n
+            Địa chỉ: ${diachi}\n
+            Email: ${email}`;
+
+            alert(thongtin);
+    }
+    function valEmail(email) {
+        let re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+    </script>
+</body>
+</html>

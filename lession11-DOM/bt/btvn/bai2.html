@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        input {
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 200px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <input type="text" id="taskInput" placeholder="Nhap noi dung cong viec moi">
+        <button id="btn" onclick="add()">Tao cong viec</button>
+    </div>
+
+    <h2>Danh sach cong viec can lam: </h2>
+    <ul id="taskList">
+
+    </ul> 
+
+    <script>
+        function add() {
+            let input = document.getElementById("taskInput");
+            let taskText = input.value;
+
+            if (taskText === "") {
+                alert("Vui long nhap noi dung cong viec!");
+                return;
+            }
+
+            let li = document.createElement("li");
+            li.textContent = taskText;
+
+            document.getElementById("taskList").appendChild(li);
+
+            input.value = ""; // Xóa nội dung ô input sau khi thêm
+        }
+    </script>
+
+</body>
+</html>
